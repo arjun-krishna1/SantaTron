@@ -10,6 +10,7 @@ from .models import (
 )
 
 from .forms import CreatePoolForm
+from gift_coordinator.clustering import update_gift_product
 
 def listPoolView(request):
     context = {}
@@ -72,7 +73,9 @@ def createPoolView(request, recipient_name=''):
     return render(request, "createPoolTemplate.html", context)
 
 def chooseGiftView(request, recipient_name):
-    #TODO Joe add your machine learning here
-    context = {}
+    current_pool = GiftPool.objects.get(recipient_name=recipient_name)
+    pool_id = current_pool.pk
+    url = update_gift_product(pool_id)
+    context = {"gift_url": url}
     return render(request, 'chooseGiftTemplate.html', context)
   
