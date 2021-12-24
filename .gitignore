@@ -1,5 +1,5 @@
 .idea
-.db
+*.sqlite3
 .pycache
 ./idea
 ./pycache
