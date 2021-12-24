@@ -19,9 +19,20 @@
     </div>
     {% endif %}
     <nav style = "padding-bottom: .05em; margin-bottom: .05em;" class="navbar navbar-expand-sm justify-content-center align-items-start navb">
-        SantaTron  | <a href="{% url 'listPoolUrl' %}">list of Gift Pools</a> | <a href="{% url 'createPoolUrl' %}">+</a>
+        <div class="navbar-collapse collapse" id="navbar">
+            <ul class="navbar-nav justify-content-center">
+                <li class="nav-item">
+                  <a style = "margin-left: 4em;" href = "{% url 'listPoolUrl' %}"><i class="fa fa-list nav-link navi"></i></a>
+                </li>
+                <li class="nav-item">
+                    <a style = "margin-left: 1.2em;" href = "{% url 'createPoolUrl' %}"><i class="fa fa-handshake-o nav-link navi"></i></a>
+                </li>
+            </ul>
+        </div>
+        <span class="navbar-brand position-absolute mx-0">SantaTron</span>
+        <br>
+        <br><br>
     </nav>
-
 
     <div id="content" class="container card">
         {% block content %}
