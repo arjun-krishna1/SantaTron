@@ -16,7 +16,7 @@ def listPoolView(request):
     context['pools'] = GiftPool.objects.all()
     return render(request, "listPoolTemplate.html", context)
 
-def createPoolView(request):
+def createPoolView(request, recipient_name=''):
     if request.method == 'POST':
         form = CreatePoolForm(request.POST)
 
@@ -28,10 +28,11 @@ def createPoolView(request):
             newPoolVal = int(form.cleaned_data.get('amount'))
 
             # use that to get any existing GiftPool for this recipient
-            pool = GiftPool.objects.filter(recipient_name=giftRecipName)
+            pool = GiftPool.objects.get (recipient_name=giftRecipName)
             
             if pool and pool.curr_val: # this is not the first person joining the gift pool
                 newPoolVal = pool.curr_val + newPoolVal
+                pool.curr_val = newPoolVal
 
             else: # make a new gift pool for this recipient
                 pool = GiftPool(
@@ -61,6 +62,17 @@ def createPoolView(request):
 
     # show the view with the empty form
     context = {}
-    context['form'] = CreatePoolForm()
+
+    if len(recipient_name):
+        context['form'] = CreatePoolForm({'recipient_name': recipient_name})
+
+    else: 
+        context['form'] = CreatePoolForm()
+
     return render(request, "createPoolTemplate.html", context)
+
+def chooseGiftView(request, recipient_name):
+    #TODO Joe add your machine learning here
+    context = {}
+    return render(request, 'chooseGiftTemplate.html', context)
   

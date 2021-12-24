@@ -1,8 +1,33 @@
 {% extends 'base.html' %}
 {% block content %}
-    <form action = "" method = "post">
-        {% csrf_token %}
-        {{form }}
-        <input type="submit" value="Join Gift Pool!">
-    </form>
+    <h3>Join Gift Pool</h3>
+    <div>
+        <form action="" method="post">
+            {% csrf_token %}
+        <div class="mb-3">
+            <label for="contributor_name" class="form-label">Contributor's Name</label>
+            <input type="text" id="contributor_name" name = "contributor_name" class="form-control"/>
+        </div>
+        <div class="mb-3">
+            <label for="recipient_name" class="form-label">Recipient's name</label>
+            <input type="text" id="recipient_name" name = "recipient_name" class="form-control"/>
+        </div>
+        <div class="mb-3">
+            <label for="amount" class="form-label">The amount you'll contribute</label>
+            <input type="number" id="amount" name = "amount" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label for="keyword1" class="form-label">A keyword to help me choose a gift</label>
+            <input type="text" id="keyword1" name = "keyword1" class="form-control" maxlength="10"/>
+        </div>
+        <div class="mb-3">
+            <label for="keyword2" class="form-label">Another keyword</label>
+            <input type="text" id="keyword2" name = "keyword2" class="form-control" maxlength="10"/>
+        </div>
+        <div class="mb-3">
+            <label for="keyword3" class="form-label">A final keyword</label>
+            <input type="text" id="keyword3" name = "keyword3" class="form-control" maxlength="10"/>
+        </div>
+        <button type="submit" class="btn btn-lg btn-primary" style="width: 100%;"><i class="fa fa-plus"></i></button>
+    </div>
 {% endblock content %}

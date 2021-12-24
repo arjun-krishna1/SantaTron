@@ -1,8 +1,44 @@
 {% extends 'base.html' %}
 {% block content %}
-    {% for p in pools%}
-        {{ p.recipient_name }}
-        ${{ p.curr_val }}
-        </br>
-    {% endfor %}
+    <h3>Gift Pools</h3>
+<table class="table table-hover">
+  <tbody>
+    
+    <style>
+      table {
+        border-bottom: 1px solid #ccc;
+        table-layout: auto;
+        border-collapse: collapse;
+        width: 100%;
+      }
+      table td {
+        border-left: 1px solid #ccc;
+        border-right: 1px solid #ccc;
+        padding: 1em;
+      }
+      table .absorbing-column {
+        width: 100%;
+    }
+    </style>
+    <table>
+      
+      <tr style = "border: 1px solid #ccc; text-align: center;">
+        <th style = "border-right: 1px solid #ccc;">Recipient Name</th>
+        <th style = "border-right: 1px solid #ccc;"><i class="fa fa-usd"></i></th>
+        <th style = "border-right: 1px solid #ccc;"><i class="fa fa-handshake-o"></i></th>
+        <th style = "border-right: 1px solid #ccc;"><i class="fa fa-gift"></i></th>
+      </tr>
+      {% for p in pools%}
+      <tr>
+          <td>{{ p.recipient_name }}</td>
+          <td>${{ p.curr_val }}</td>
+          <td><a href="{% url 'createPoolUrlName' p.recipient_name %}">Join</a></td>
+          <!-- TODO change url to choose gift url -->
+          <td><a href="{% url 'chooseGiftUrl' p.recipient_name %}">Choose Gift</a></td>
+      </tr>
+      {% endfor %}
+    </table>
+    
+  </tbody>
+</table>
 {% endblock content %}
