@@ -76,6 +76,8 @@ def chooseGiftView(request, recipient_name):
     current_pool = GiftPool.objects.get(recipient_name=recipient_name)
     pool_id = current_pool.pk
     url = update_gift_product(pool_id)
+    current_pool.url = url
+    current_pool.save()
     context = {"gift_url": url}
     return render(request, 'chooseGiftTemplate.html', context)
   

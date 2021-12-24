@@ -13,7 +13,6 @@ def get_similar_words(target):
     }
 
     response = requests.request("GET", url, headers=headers, params=querystring)
-
     print(response.status_code)
     return response.json()["associations_scored"]
 
@@ -44,8 +43,6 @@ def update_gift_product(pool_id):
     keywords += [c.keyword3 for c in contributors]
     query = query_from_kws(keywords)
 
-    import requests
-
     url = f"https://amazon-data-scraper15.p.rapidapi.com/search/{query}"
 
     querystring = {"api_key": "9eabdc7648052e4a9d19552920b60a7f"}
@@ -56,6 +53,8 @@ def update_gift_product(pool_id):
     }
 
     response = requests.request("GET", url, headers=headers, params=querystring)
+    print(response.text)
+    print(response.json())
     return response.json()["results"][0]["url"]
 
 
