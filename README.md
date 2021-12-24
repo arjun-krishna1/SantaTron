@@ -1,4 +1,4 @@
-# santa-tron
+# santatron
 ## motivation
 - coming up with what to buy for friends and family is difficult
 - especially when you are a student and you have a low budget
