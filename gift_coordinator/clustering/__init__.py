@@ -1,6 +1,8 @@
 import requests
 from gift_coordinator.models import GiftPool, Contributor
 from urllib.parse import quote
+from re import sub
+from decimal import Decimal
 
 
 def get_similar_words(target):
@@ -14,14 +16,21 @@ def get_similar_words(target):
 
     response = requests.request("GET", url, headers=headers, params=querystring)
     print(response.status_code)
-    return response.json()["associations_scored"]
+    if response.status_code == 200:
+        return response.json()["associations_scored"]
+    else:
+        return -1
 
 
 def query_from_kws(keywords):
     master_dict = {}
     k_targets = 3
     for kw in keywords:
-        related_words = get_similar_words(kw)
+        result = get_similar_words(kw)
+        if result == -1:
+            related_words = {}
+        else:
+            related_words = result
         for key in related_words.keys():
             if key in master_dict:
                 master_dict[key] += related_words[key]
@@ -55,7 +64,12 @@ def update_gift_product(pool_id):
     response = requests.request("GET", url, headers=headers, params=querystring)
     print(response.text)
     print(response.json())
-    return response.json()["results"][0]["url"]
+    final_result = None
+    for index in range(20):
+        if Decimal(sub(r'[^\d.]', '', response.json()["results"][index]["price"])) <= price_limit:
+            final_result = response.json()["results"][index]["url"]
+            break
+    return final_result
 
 
 
