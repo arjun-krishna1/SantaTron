@@ -29,8 +29,9 @@ def createPoolView(request, recipient_name=''):
             newPoolVal = int(form.cleaned_data.get('amount'))
 
             # use that to get any existing GiftPool for this recipient
-            pool = GiftPool.objects.get (recipient_name=giftRecipName)
-            
+            pool = GiftPool.objects.filter(recipient_name=giftRecipName)
+            if len(pool) > 0:
+                pool = pool[0]
             if pool and pool.curr_val: # this is not the first person joining the gift pool
                 newPoolVal = pool.curr_val + newPoolVal
                 pool.curr_val = newPoolVal
