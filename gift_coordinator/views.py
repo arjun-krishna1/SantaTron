@@ -65,6 +65,7 @@ def createPoolView(request, recipient_name=''):
     # show the view with the empty form
     context = {}
 
+    context['recipient_name'] = recipient_name
     if len(recipient_name):
         context['form'] = CreatePoolForm({'recipient_name': recipient_name})
 

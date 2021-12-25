@@ -30,7 +30,7 @@
       </tr>
       {% for p in pools%}
       <tr>
-          <td>{{ p.recipient_name }}</td>
+          <td><h5>{{ p.recipient_name }}</h5></td>
           <td>${{ p.curr_val }}</td>
           <td><a href="{% url 'createPoolUrlName' p.recipient_name %}">Join</a></td>
           <!-- TODO change url to choose gift url -->
