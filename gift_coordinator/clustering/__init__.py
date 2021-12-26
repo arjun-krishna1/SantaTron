@@ -72,7 +72,7 @@ def update_gift_product(pool_id):
             #print(type(response.json()["results"][index]["price"]))
             price = response.json()["results"][index]["price"]
             if price is not None and price <= price_limit:
-                final_result = response.json()["results"][0]["url"]
+                final_result = response.json()["results"][index]["url"]
                 break
     return final_result
 
