@@ -36,8 +36,9 @@ def query_from_kws(keywords):
                 master_dict[key] += related_words[key]
             else:
                 master_dict[key] = related_words[key]
-
-    target_keywords = sorted(master_dict, key=master_dict.get)[0:k_targets]
+    print(master_dict)
+    print(sorted(master_dict, key=master_dict.get))
+    target_keywords = sorted(master_dict, key=master_dict.get)[-k_targets:]
     sep = " "
     target_keywords.append("gifts")
     target_query = quote(sep.join(target_keywords))  #encode URL string
@@ -62,13 +63,17 @@ def update_gift_product(pool_id):
     }
 
     response = requests.request("GET", url, headers=headers, params=querystring)
-    print(response.text)
-    print(response.json())
-    final_result = None
-    for index in range(20):
-        if Decimal(sub(r'[^\d.]', '', response.json()["results"][index]["price"])) <= price_limit:
-            final_result = response.json()["results"][index]["url"]
-            break
+    final_result = ''
+    if response.status_code == 200:
+        #print(type(response.json()["results"][0]["price"]))
+        #print((response.json()["results"][0]["price"]))
+        for index in range(20):
+            #print(response.json()["results"][index]["price"])
+            #print(type(response.json()["results"][index]["price"]))
+            price = response.json()["results"][index]["price"]
+            if price is not None and price <= price_limit:
+                final_result = response.json()["results"][0]["url"]
+                break
     return final_result
 
 

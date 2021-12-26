@@ -24,14 +24,14 @@
       
       <tr style = "border: 1px solid #ccc; text-align: center;">
         <th style = "border-right: 1px solid #ccc;">Recipient Name</th>
-        <th style = "border-right: 1px solid #ccc;"><i class="fa fa-usd"  style="color:#1E792C;"></i></th>
+        <th style = "border-right: 1px solid #ccc;">₹</th>
         <th style = "border-right: 1px solid #ccc;"><i class="fa fa-handshake-o"  style="color:#1E792C;"></i></th>
         <th style = "border-right: 1px solid #ccc;"><i class="fa fa-gift"  style="color:#1E792C;"></i></th>
       </tr>
       {% for p in pools%}
       <tr>
           <td><h5>{{ p.recipient_name }}</h5></td>
-          <td>${{ p.curr_val }}</td>
+          <td>₹{{ p.curr_val }}</td>
           <td><a href="{% url 'createPoolUrlName' p.recipient_name %}">Join</a></td>
           <!-- TODO change url to choose gift url -->
           <td><a href="{% url 'chooseGiftUrl' p.recipient_name %}">Choose Gift</a></td>
