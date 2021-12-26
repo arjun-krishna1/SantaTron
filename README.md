@@ -1,11 +1,11 @@
-# Santatron
-## motivation
-- coming up with what to buy for friends and family is difficult
-- especially when you are a student and you have a low budget
+<div align="center">
+  <h1>SantaTron</h1>
+  <h2>Using Machine Learning to pick the perfect Christmas Gift</h2>
+  <h2>👑 Hackathon Winner <a href="https://devpost.com/software/santatron">Link</a></h2>
+  </br>
+  <img width="200" src="https://www.svgrepo.com/show/14296/pixeled-gift.svg">
+</div>
 
-## idea
-- santa-tron is a web application
-- people pool funds (using cryptocurrency)
-- they also pool together ideas
-- santa-tron uses this money and ideas
-- and a machine learning model to choose a gift, and buy it
+- A web application that allows you to crowd-source money and ideas for Christmas gifts into gift pools
+- The application will then use machine learning to synthesize the perfect gift idea
+- Then you will get the amazon product best meeting our algorithm's synthesis
