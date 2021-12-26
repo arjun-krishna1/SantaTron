@@ -60,7 +60,7 @@ def createPoolView(request, recipient_name=''):
             contributor.save()
 
             # TODO redirect them to the list pools view
-            return redirect(reverse('createPoolUrl'))
+            return redirect(reverse('listPoolUrl'))
 
     # show the view with the empty form
     context = {}
